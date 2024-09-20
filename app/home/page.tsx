@@ -24,7 +24,7 @@ export default function Home() {
     <div className="p-6 max-w-[1200px] mx-auto">
       <ContainerScroll
         titleComponent={
-          <div className="flex justify-center items-center bg-yellow-400 rounded-full size-[300px] md:size-[550px] mx-auto overflow-hidden">
+          <div className="flex justify-center items-center shadow-2xl bg-yellow-400 rounded-full size-[300px] md:size-[550px] mx-auto overflow-hidden">
             <img
               className="h-full w-full object-fill"
               src="/profile.png"
