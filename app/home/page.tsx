@@ -1,26 +1,25 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
+
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 
 export default function Home() {
-  const words = [
-    {
-      text: "Full",
-      className:
-        "text-left text-6xl lg:text-7xl xl:text-8xl font-bold text-orange-500 dark:text-orange-500",
-    },
-    {
-      text: "Stack",
-      className:
-        "text-left text-6xl lg:text-7xl xl:text-8xl font-bold text-orange-500 dark:text-orange-500",
-    },
-    {
-      text: "Developer.",
-      className:
-        "text-left text-6xl lg:text-7xl xl:text-8xl font-bold text-blue-500 dark:text-blue-500",
-    },
-  ];
+  // const words = [
+  //   {
+  //     text: "Full",
+  //     className:
+  //       "text-left text-6xl lg:text-7xl xl:text-8xl font-bold text-orange-500 dark:text-orange-500",
+  //   },
+  //   {
+  //     text: "Stack",
+  //     className:
+  //       "text-left text-6xl lg:text-7xl xl:text-8xl font-bold text-orange-500 dark:text-orange-500",
+  //   },
+  //   {
+  //     text: "Developer.",
+  //     className:
+  //       "text-left text-6xl lg:text-7xl xl:text-8xl font-bold text-blue-500 dark:text-blue-500",
+  //   },
+  // ];
   return (
     <div className="p-6 max-w-[1200px] mx-auto">
       <ContainerScroll
