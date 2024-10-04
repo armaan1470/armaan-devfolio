@@ -31,7 +31,7 @@ export function Navbar() {
   };
 
   return (
-    <header className="bg-main dark:bg-dark-main sticky top-0 z-50 h-20 w-full px-4 md:px-6">
+    <header className="bg-main dark:bg-dark-main fixed top-0 z-50 h-20 w-full px-4 md:px-6">
       <Sheet>
         <SheetTrigger className="absolute right-6 top-5" asChild>
           <Button variant="outline" size="icon" className="md:hidden">
@@ -44,27 +44,29 @@ export function Navbar() {
             <SheetTitle>Armaan.dev</SheetTitle>
             <SheetDescription>Armaan.dev</SheetDescription>
           </div>
-          <Link href="/home" className="mr-6">
-            <div className="text-3xl font-bold">Armaan.dev</div>
-          </Link>
+          <SheetClose asChild>
+            <Link href="#home" className="mr-6">
+              <div className="text-3xl font-bold">Armaan.dev</div>
+            </Link>
+          </SheetClose>
           <div className="grid gap-6 py-8">
             <SheetClose asChild>
-              <Link className="text-xl font-semibold" href="/aboutme">
+              <Link className="text-xl font-semibold" href="#aboutme">
                 About Me
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link className="text-xl font-semibold" href="/projects">
+              <Link className="text-xl font-semibold" href="#projects">
                 Projects
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link className="text-xl font-semibold" href="/resume">
+              <Link className="text-xl font-semibold" href="#resume">
                 Resume
               </Link>
             </SheetClose>
             <SheetClose asChild>
-              <Link className="text-xl font-semibold" href="/contact">
+              <Link className="text-xl font-semibold" href="#contact">
                 Contact
               </Link>
             </SheetClose>
@@ -73,7 +75,7 @@ export function Navbar() {
       </Sheet>
 
       <div className="flex justify-between shrink-0 items-center max-w-[1200px] mx-auto h-full">
-        <Link href="/home" className="mr-6" prefetch={false}>
+        <Link href="#home" className="mr-6">
           <div className="text-3xl font-bold">
             <span>Armaan</span>
             <span>.</span>
@@ -93,16 +95,16 @@ export function Navbar() {
         )}
 
         <nav className="ml-auto hidden md:flex gap-6">
-          <Link className="text-xl font-semibold" href="/aboutme">
+          <Link className="text-xl font-semibold" href="#aboutme">
             About Me
           </Link>
-          <Link className="text-xl font-semibold" href="/projects">
+          <Link className="text-xl font-semibold" href="#projects">
             Projects
           </Link>
-          <Link className="text-xl font-semibold" href="/resume">
+          <Link className="text-xl font-semibold" href="#resume">
             Resume
           </Link>
-          <Link className="text-xl font-semibold" href="/contact">
+          <Link className="text-xl font-semibold" href="#contact">
             Contact
           </Link>
         </nav>
