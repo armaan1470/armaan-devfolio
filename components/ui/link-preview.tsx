@@ -55,7 +55,6 @@ export const LinkPreview = ({
   }
 
   const [isOpen, setOpen] = React.useState(false);
-
   const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -64,13 +63,14 @@ export const LinkPreview = ({
 
   const springConfig = { stiffness: 100, damping: 15 };
   const x = useMotionValue(0);
-
   const translateX = useSpring(x, springConfig);
 
-  const handleMouseMove = (event: any) => {
-    const targetRect = event.target.getBoundingClientRect();
+  const handleMouseMove = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    const targetRect = event.currentTarget.getBoundingClientRect();
     const eventOffsetX = event.clientX - targetRect.left;
-    const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2; // Reduce the effect to make it subtle
+    const offsetFromCenter = (eventOffsetX - targetRect.width / 2) / 2;
     x.set(offsetFromCenter);
   };
 
@@ -97,12 +97,14 @@ export const LinkPreview = ({
           setOpen(open);
         }}
       >
-        <HoverCardPrimitive.Trigger
-          onMouseMove={handleMouseMove}
-          className={cn("text-black dark:text-white", className)}
-          href={url}
-        >
-          {children}
+        <HoverCardPrimitive.Trigger asChild>
+          <Link
+            onMouseMove={handleMouseMove}
+            className={cn("text-black dark:text-white", className)}
+            href={url}
+          >
+            {children}
+          </Link>
         </HoverCardPrimitive.Trigger>
 
         <HoverCardPrimitive.Content
@@ -127,9 +129,7 @@ export const LinkPreview = ({
                 }}
                 exit={{ opacity: 0, y: 20, scale: 0.6 }}
                 className="shadow-xl rounded-xl"
-                style={{
-                  x: translateX,
-                }}
+                style={{ x: translateX }}
               >
                 <Link
                   href={url}
