@@ -1,7 +1,5 @@
 "use client";
 
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-
 export default function LandingPage() {
   return (
     <div className="max-w-[1200px] mx-auto">
