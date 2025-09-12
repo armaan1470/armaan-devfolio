@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens for glassmorphic design */
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: #ffffff;
+  --popover: rgba(255, 255, 255, 0.1);
+  --popover-foreground: #ffffff;
+  /* Made primary and secondary colors brighter for better contrast */
+  --primary: #22d3ee;
+  --primary-foreground: #ffffff;
+  --secondary: #34d399;
+  --secondary-foreground: #ffffff;
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: #34d399;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: rgba(34, 211, 238, 0.3);
+  --chart-1: #22d3ee;
+  --chart-2: #34d399;
+  --chart-3: #8b5cf6;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+  --radius: 1rem;
+  --sidebar: rgba(255, 255, 255, 0.05);
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #22d3ee;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #34d399;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: rgba(34, 211, 238, 0.3);
+}
+
+.dark {
+  /* Dark mode tokens for consistent glassmorphic theme */
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-foreground: #ffffff;
+  --popover: rgba(255, 255, 255, 0.1);
+  --popover-foreground: #ffffff;
+  /* Updated dark mode colors to match brighter primary/secondary */
+  --primary: #22d3ee;
+  --primary-foreground: #ffffff;
+  --secondary: #34d399;
+  --secondary-foreground: #ffffff;
+  --muted: rgba(255, 255, 255, 0.1);
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: #34d399;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: rgba(34, 211, 238, 0.3);
+  --chart-1: #22d3ee;
+  --chart-2: #34d399;
+  --chart-3: #8b5cf6;
+  --chart-4: #f59e0b;
+  --chart-5: #ef4444;
+  --sidebar: rgba(255, 255, 255, 0.05);
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #22d3ee;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #34d399;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: rgba(34, 211, 238, 0.3);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-work-sans);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Added custom glassmorphic utilities and animations */
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-md bg-white/5 border border-white/10;
+  }
+
+  .glass-hover {
+    @apply hover:bg-white/10 hover:border-white/20 transition-all duration-300;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Adding scrolling animation for the banner */
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+
+  /* Added reverse scroll animation for intersecting marquees */
+  .animate-scroll-reverse {
+    animation: scroll-reverse 25s linear infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Added reverse scroll keyframes for opposite direction marquee */
+@keyframes scroll-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+/* Added gradient background pattern */
+.gradient-bg {
+  background: radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+}
