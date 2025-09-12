@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn } from "@/lib/utils";
-import { LanguagesIcon, Link, Menu, X } from "lucide-react";
+import { LanguagesIcon, Link, Menu, X, Github } from "lucide-react";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
+} from "@/components/ui/sheet";
 import { Separator } from "@radix-ui/react-context-menu";
 
 export function Navbar() {
@@ -88,7 +88,7 @@ export function Navbar() {
       <nav className="fixed top-2.5 left-1/2 flex w-full max-w-7xl -translate-x-1/2 items-center justify-between px-4 py-1.5 md:top-4 md:px-6">
         {/* Logo */}
         <a
-          className="size-10 p-1 drop-shadow-xl delay-200 md:size-12 flex-shrink-0 lg:block"
+          className="size-10 md:size-12 p-1 drop-shadow-xl delay-200  flex-shrink-0 lg:block"
           aria-label="Homepage"
           href="#home"
           onClick={() => handleNavClick("#home")}
@@ -131,31 +131,28 @@ export function Navbar() {
                   )}
                 </li>
               ))}
-
-              <li className="ml-1 list-none">
-                <Button className="items-center justify-center gap-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([className*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive shadow-xs has-[>svg]:px-3 relative inline-block h-full cursor-pointer rounded-full bg-white/10 px-4 py-1.5 text-sm font-light whitespace-nowrap text-white transition-all duration-300 hover:bg-white/15 hover:text-white/90 dark:text-white/70">
-                  Book a Call
-                  <div
-                    aria-hidden="true"
-                    className="absolute bottom-0 h-1/3 w-full -translate-x-4 rounded-full bg-white opacity-30 blur-sm"
-                  ></div>
-                </Button>
-              </li>
             </div>
           </ul>
         </div>
 
-        {/* Desktop Avatar */}
+        {/* Desktop Avatar with hover effect */}
         <div className="hidden items-center gap-2 delay-200 lg:flex">
-          <div className="relative">
-            <Avatar className="size-8 outline-2 outline-gray-400 outline-offset-2 shadow-md cursor-pointer hover:scale-105 transition-all duration-200">
-              <AvatarImage src="/github-avatar.jpeg" alt="Armaan Shaikh" />
-              <AvatarFallback>AS</AvatarFallback>
-            </Avatar>
-            <span className="border-background absolute -end-0.5 -bottom-0.5 size-3 rounded-full border-2 bg-emerald-500">
-              <span className="sr-only">Online</span>
-            </span>
-          </div>
+          <a
+            href="https://github.com/armaan1470"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative size-10 flex items-center justify-center rounded-full border-2 border-gray-400/30 shadow-md transition-all duration-300 hover:scale-110 overflow-hidden"
+          >
+            {/* GitHub Logo */}
+            <Github className="absolute inset-0 m-auto size-6 text-white transition-all duration-300 group-hover:scale-0 opacity-100 group-hover:opacity-0" />
+
+            {/* Avatar Image */}
+            <img
+              src="/github-avatar.jpeg"
+              alt="Armaan Shaikh"
+              className="absolute inset-0 w-full h-full object-cover rounded-full transition-all duration-300 scale-0 group-hover:scale-100 opacity-0 group-hover:opacity-100"
+            />
+          </a>
         </div>
 
         {/* Mobile Menu */}
@@ -179,7 +176,7 @@ export function Navbar() {
                 <SheetTitle className="sr-only">Resin Work</SheetTitle>
                 <div className="flex items-center justify-start">
                   <a
-                    className="size-8 p-1 drop-shadow-xl delay-200 md:size-9 flex-shrink-0 lg:block"
+                    className="size-10 md:size-12  p-1 drop-shadow-xl delay-200 flex-shrink-0 lg:block"
                     aria-label="Homepage"
                     href="#home"
                     onClick={() => handleNavClick("#home")}
@@ -208,16 +205,6 @@ export function Navbar() {
                       </span>
                     </a>
                   ))}
-                </div>
-
-                <Separator className="my-8 bg-white/20" />
-                <div className="px-4">
-                  <h3 className="text-sm font-semibold text-white/70 uppercase tracking-wider mb-4">
-                    Get Started
-                  </h3>
-                  <Button className="w-full bg-white hover:bg-brand/90 text-black font-semibold py-6 px-4 rounded-md transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
-                    Book a Call
-                  </Button>
                 </div>
               </div>
             </SheetContent>

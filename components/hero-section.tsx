@@ -11,18 +11,29 @@ export function HeroSection() {
     setIsVisible(true);
   }, []);
 
+  const handleConnectClick = () => {
+    console.log("first");
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <section
       id="home"
       className="h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
     >
       {/* Enhanced grid pattern overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+      {/* <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
 
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/8 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-400/6 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-400/6 rounded-full blur-3xl"></div> */}
 
-      <div className="container mx-auto px-6 text-center relative z-10 max-w-5xl">
+      <div className="container mx-auto px-6 text-center relative max-w-5xl">
         <div
           className={`mb-6 transition-all duration-1000 ${
             isVisible ? "animate-slide-up" : ""
@@ -65,7 +76,7 @@ export function HeroSection() {
             </span>
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-blue-400/30 shadow-lg">
               <img
-                src="/armaan-shaikh-1.png"
+                src="/armaan-shaikh-2.png"
                 alt="Armaan Shaikh"
                 className="w-full h-full object-cover"
               />
@@ -82,9 +93,10 @@ export function HeroSection() {
           }`}
           style={{ animationDelay: "0.6s" }}
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 z-999">
             <Button
               size="lg"
+              onClick={handleConnectClick}
               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-full px-6 py-3 font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-105 border border-blue-500/20"
             >
               Let's Connect
@@ -112,7 +124,7 @@ export function HeroSection() {
           </p>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-500/10 via-blue-400/5 to-transparent rounded-t-[100%] blur-xl"></div>
+        {/* <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-500/10 via-blue-400/5 to-transparent rounded-t-[100%] blur-xl"></div> */}
       </div>
     </section>
   );

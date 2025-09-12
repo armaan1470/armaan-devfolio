@@ -281,8 +281,12 @@ export function AboutSection() {
               style={{ animationDelay: "0.4s" }}
             >
               <div className="relative">
-                <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-xl border border-white/10 flex items-center justify-center">
-                  <div className="text-8xl font-bold text-white">AS</div>
+                <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-xl border border-white/10 flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/armaan-shaikh-1.png"
+                    alt="Profile picture of Armaan Shaikh"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-xl"></div>
               </div>
