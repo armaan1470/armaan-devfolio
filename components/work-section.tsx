@@ -1,19 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import {
-  ExternalLink,
-  Github,
-  ArrowUpRight,
-  Calendar,
-  Users,
-  Star,
-} from "lucide-react";
+import { ExternalLink, Github, ArrowUpRight, Star } from "lucide-react";
 
-export function WorkSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [activeProject, setActiveProject] = useState(0);
+// Tech Icons (can be imported as SVG components or from a library like react-icons)
+import {
+  SiNextdotjs,
+  SiTailwindcss,
+  SiReact,
+  SiFramer,
+  SiGreensock,
+} from "react-icons/si";
+
+// Define an interface for the project data structure for type safety
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  technologies: string[];
+  liveUrl: string;
+  githubUrl: string;
+  year: string;
+}
+
+export function WorkSection(): JSX.Element {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,7 +47,20 @@ export function WorkSection() {
     return () => observer.disconnect();
   }, []);
 
-  const projects = [
+  // Map of technology names to their icons
+  const techIcons: { [key: string]: JSX.Element | null } = {
+    "Next.js": <SiNextdotjs className="w-4 h-4" />,
+    "Tailwind CSS": <SiTailwindcss className="w-4 h-4" />,
+    "React.js": <SiReact className="w-4 h-4" />,
+    ShadCN: null, // No specific icon for ShadCN, can be a custom one if available
+    GSAP: <SiGreensock className="w-4 h-4" />,
+    "Framer Motion": <SiFramer className="w-4 h-4" />,
+    CSS: null,
+    "Responsive Design": null,
+    "Form Validation": null,
+  };
+
+  const projects: Project[] = [
     {
       id: "01",
       title: "Resin Work",
@@ -51,12 +80,6 @@ export function WorkSection() {
       liveUrl: "https://resinwork.com",
       githubUrl: "#",
       year: "2024",
-      status: "Live",
-      metrics: {
-        users: "2.5K",
-        performance: "98/100",
-        accessibility: "95/100",
-      },
     },
     {
       id: "02",
@@ -71,12 +94,6 @@ export function WorkSection() {
       liveUrl: "https://philomathean.vercel.app",
       githubUrl: "#",
       year: "2024",
-      status: "Live",
-      metrics: {
-        users: "1.2K",
-        performance: "96/100",
-        accessibility: "92/100",
-      },
     },
     {
       id: "03",
@@ -91,8 +108,6 @@ export function WorkSection() {
       liveUrl: "https://green-enery-optimizer-v3.vercel.app",
       githubUrl: "#",
       year: "2024",
-      status: "Live",
-      metrics: { users: "800", performance: "94/100", accessibility: "90/100" },
     },
     {
       id: "04",
@@ -107,46 +122,44 @@ export function WorkSection() {
       liveUrl: "https://armaandev.vercel.app",
       githubUrl: "#",
       year: "2024",
-      status: "Live",
-      metrics: { users: "500", performance: "99/100", accessibility: "97/100" },
     },
   ];
 
   return (
     <section
       id="work"
-      className="py-32 relative overflow-hidden bg-gradient-to-b from-slate-950/50 to-slate-950"
+      className="py-24 md:py-32 relative overflow-hidden bg-slate-950/70"
     >
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-      <div className="absolute top-1/3 left-1/5 w-96 h-96 bg-orange-500/3 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-1/4 right-1/5 w-72 h-72 bg-orange-400/4 rounded-full blur-3xl"></div>
+      {/* Subtle Background Gradients/Effects */}
+      <div className="absolute inset-0 bg-white/[0.01] pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_80%)]"></div>
+      <div className="absolute -top-1/3 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl opacity-70"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl opacity-70"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
           <div
-            className={`text-center mb-24 transition-all duration-1000 ${
+            className={`text-center mb-16 md:mb-24 transition-all duration-1000 ${
               isVisible ? "animate-slide-up" : ""
             }`}
           >
-            <div className="inline-flex items-center px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-full text-sm font-medium text-orange-400 mb-8">
-              <Star className="w-4 h-4 mr-2" />
+            <div className="inline-flex items-center px-4 py-1 bg-gray-800/50 border border-gray-700 rounded-full text-sm font-medium text-gray-400 mb-6">
+              <Star className="w-4 h-4 mr-2 text-indigo-400" />
               Selected Works
             </div>
 
-            <h2 className="font-bold text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight">
+            <h2 className="font-bold text-5xl md:text-7xl lg:text-8xl mb-4 leading-tight">
               <span className="text-white">Crafted</span>
               <br />
               <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-500 to-yellow-500 font-light italic"
+                className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 font-light italic"
                 style={{ fontFamily: "Georgia, serif" }}
               >
                 Experiences
               </span>
             </h2>
 
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
               A collection of digital experiences that blend innovative design
               with cutting-edge technology to create meaningful user
               interactions.
@@ -154,8 +167,8 @@ export function WorkSection() {
           </div>
 
           {/* Projects Showcase */}
-          <div className="space-y-32">
-            {projects.map((project, index) => (
+          <div className="space-y-24 md:space-y-32">
+            {projects.map((project: Project, index: number) => (
               <div
                 key={project.id}
                 className={`transition-all duration-1000 ${
@@ -163,29 +176,63 @@ export function WorkSection() {
                 }`}
                 style={{ animationDelay: `${0.2 + index * 0.15}s` }}
               >
-                <div className="grid lg:grid-cols-12 gap-12 items-center">
+                <div
+                  className={`grid lg:grid-cols-12 gap-12 items-center ${
+                    index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Project Image */}
+                  <div
+                    className={`lg:col-span-7 transition-all duration-700 ${
+                      index % 2 === 1 ? "lg:col-start-6 lg:row-start-1" : ""
+                    }`}
+                  >
+                    <div className="group relative rounded-3xl overflow-hidden shadow-2xl">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={1280}
+                        height={960}
+                        layout="responsive"
+                        className="transition-transform duration-700 group-hover:scale-105"
+                      />
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                        <Button
+                          size="lg"
+                          className="bg-white text-gray-900 hover:bg-gray-100 rounded-full px-8 py-3 font-semibold shadow-xl"
+                          asChild
+                        >
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="w-5 h-5 mr-2" />
+                            Open Project
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+
                   {/* Project Info */}
                   <div
                     className={`lg:col-span-5 ${
-                      index % 2 === 1 ? "lg:col-start-8" : ""
+                      index % 2 === 1 ? "lg:col-start-1" : ""
                     }`}
                   >
                     <div className="space-y-6">
                       {/* Project Number & Category */}
                       <div className="flex items-center gap-4 text-sm">
-                        <span className="text-6xl font-bold text-orange-500/20 leading-none">
+                        <span className="text-6xl font-bold text-gray-700 leading-none">
                           {project.id}
                         </span>
                         <div>
-                          <div className="text-orange-400 font-medium mb-1">
+                          <div className="text-indigo-400 font-medium mb-1">
                             {project.category}
                           </div>
-                          <div className="flex items-center gap-3 text-gray-500">
-                            <Calendar className="w-4 h-4" />
-                            {project.year}
-                            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            {project.status}
-                          </div>
+                          <div className="text-gray-500">{project.year}</div>
                         </div>
                       </div>
 
@@ -199,42 +246,17 @@ export function WorkSection() {
                         {project.longDescription}
                       </p>
 
-                      {/* Metrics */}
-                      <div className="grid grid-cols-3 gap-4 py-6 border-y border-gray-800">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-white mb-1">
-                            {project.metrics.users}
-                          </div>
-                          <div className="text-sm text-gray-400">
-                            Monthly Users
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-white mb-1">
-                            {project.metrics.performance}
-                          </div>
-                          <div className="text-sm text-gray-400">
-                            Performance
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-white mb-1">
-                            {project.metrics.accessibility}
-                          </div>
-                          <div className="text-sm text-gray-400">
-                            Accessibility
-                          </div>
-                        </div>
-                      </div>
-
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-2 mb-8">
-                        {project.technologies.map((tech) => (
+                        {project.technologies.map((tech: string) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 text-xs font-medium bg-gray-800/50 border border-gray-700 rounded-full text-gray-300 hover:bg-orange-500/10 hover:border-orange-500/30 hover:text-orange-400 transition-all duration-300"
+                            className="inline-flex items-center px-3 py-1 text-xs font-medium bg-gray-800/50 border border-gray-700 rounded-full text-gray-300 transition-all duration-300 hover:bg-indigo-500/10 hover:border-indigo-500/30 hover:text-indigo-400"
                           >
-                            {tech}
+                            {techIcons[tech]}
+                            <span className={techIcons[tech] ? "ml-2" : ""}>
+                              {tech}
+                            </span>
                           </span>
                         ))}
                       </div>
@@ -242,7 +264,7 @@ export function WorkSection() {
                       {/* Action Buttons */}
                       <div className="flex gap-4">
                         <Button
-                          className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white border-0 rounded-full px-6 py-3 font-medium shadow-lg shadow-orange-500/25 transition-all duration-300 hover:scale-105"
+                          className="group bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white border-0 rounded-full px-6 py-3 font-medium shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:scale-105"
                           asChild
                         >
                           <a
@@ -258,54 +280,17 @@ export function WorkSection() {
                         <Button
                           variant="outline"
                           className="bg-gray-900/50 hover:bg-gray-800/50 border-gray-700 hover:border-gray-600 text-white rounded-full px-6 py-3 backdrop-blur-sm"
+                          asChild
                         >
-                          <Github className="w-4 h-4 mr-2" />
-                          Source Code
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Project Image */}
-                  <div
-                    className={`lg:col-span-7 ${
-                      index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
-                    }`}
-                  >
-                    <div className="group relative">
-                      {/* Main Image Container */}
-                      <div className="relative backdrop-blur-xl bg-gradient-to-br from-white/5 to-white/2 border border-white/10 rounded-3xl p-8 group-hover:scale-[1.02] transition-all duration-700 hover:border-orange-500/20">
-                        <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800 shadow-2xl">
-                          <img
-                            src={project.image || "/placeholder.svg"}
-                            alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                        </div>
-
-                        {/* Floating Elements */}
-                        <div className="absolute -top-4 -right-4 w-8 h-8 bg-orange-500 rounded-full blur-sm opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                        <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-orange-400/30 rounded-full blur-md group-hover:blur-lg transition-all"></div>
-                      </div>
-
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-orange-500/20 via-transparent to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-12">
-                        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                          <Button
-                            size="lg"
-                            className="bg-white text-gray-900 hover:bg-gray-100 rounded-full px-8 py-3 font-semibold shadow-xl"
-                            asChild
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                           >
-                            <a
-                              href={project.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <ExternalLink className="w-5 h-5 mr-2" />
-                              Open Project
-                            </a>
-                          </Button>
-                        </div>
+                            <Github className="w-4 h-4 mr-2" />
+                            Source Code
+                          </a>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -316,17 +301,17 @@ export function WorkSection() {
 
           {/* Bottom CTA */}
           <div
-            className={`text-center mt-32 transition-all duration-1000 ${
+            className={`text-center mt-24 md:mt-32 transition-all duration-1000 ${
               isVisible ? "animate-slide-up" : ""
             }`}
             style={{ animationDelay: "1s" }}
           >
-            <div className="inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-orange-500/10 to-yellow-500/10 border border-orange-500/20 rounded-full">
+            <div className="inline-flex items-center gap-4 px-4 py-2 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-full">
               <span className="text-white font-medium">
                 Interested in working together?
               </span>
               <Button
-                className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-2 text-sm"
+                className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 text-sm"
                 asChild
               >
                 <a href="#contact">
