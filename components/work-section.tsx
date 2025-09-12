@@ -77,7 +77,7 @@ export function WorkSection(): JSX.Element {
         "GSAP",
         "Framer Motion",
       ],
-      liveUrl: "https://resinwork.com",
+      liveUrl: "https://resinwork.vercel.app",
       githubUrl: "#",
       year: "2024",
     },
