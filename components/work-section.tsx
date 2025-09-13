@@ -78,7 +78,7 @@ export function WorkSection(): JSX.Element {
         "Framer Motion",
       ],
       liveUrl: "https://resinwork.vercel.app/en/",
-      githubUrl: "#",
+      githubUrl: "https://github.com/armaan1470/resin-work",
       year: "2024",
     },
     {
@@ -92,7 +92,7 @@ export function WorkSection(): JSX.Element {
       image: "/projects/philomathean-preview.png",
       technologies: ["React.js", "CSS", "Responsive Design"],
       liveUrl: "https://philomathean.vercel.app",
-      githubUrl: "#",
+      githubUrl: "https://github.com/armaan1470/philomathean-coaching",
       year: "2024",
     },
     {
@@ -106,7 +106,7 @@ export function WorkSection(): JSX.Element {
       image: "/projects/green-energy-optimizer-preview.png",
       technologies: ["React.js", "Tailwind CSS", "ShadCN", "Form Validation"],
       liveUrl: "https://green-enery-optimizer-v3.vercel.app",
-      githubUrl: "#",
+      githubUrl: "https://github.com/JxSh787/green_enery_optimizer",
       year: "2024",
     },
     {
@@ -120,7 +120,7 @@ export function WorkSection(): JSX.Element {
       image: "/projects/armaan-portfolio-preview.png",
       technologies: ["Next.js", "Tailwind CSS", "ShadCN", "Framer Motion"],
       liveUrl: "https://armaandev.vercel.app",
-      githubUrl: "#",
+      githubUrl: "https://github.com/armaan1470/armaan-devfolio",
       year: "2024",
     },
   ];
