@@ -88,7 +88,7 @@ export function Navbar() {
       <nav className="fixed top-2.5 left-1/2 flex w-full max-w-7xl -translate-x-1/2 items-center justify-between px-4 py-1.5 md:top-4 md:px-6">
         {/* Logo */}
         <a
-          className="size-8 md:size-10 p-1 drop-shadow-xl delay-200  flex-shrink-0 lg:block"
+          className="size-10 p-1 drop-shadow-xl delay-200  flex-shrink-0 lg:block"
           aria-label="Homepage"
           href="#home"
           onClick={() => handleNavClick("#home")}
@@ -176,7 +176,7 @@ export function Navbar() {
                 <SheetTitle className="sr-only">Resin Work</SheetTitle>
                 <div className="flex items-center justify-start">
                   <a
-                    className="size-8 md:size-10  p-1 drop-shadow-xl delay-200 flex-shrink-0 lg:block"
+                    className="size-10  p-1 drop-shadow-xl delay-200 flex-shrink-0 lg:block"
                     aria-label="Homepage"
                     href="#home"
                     onClick={() => handleNavClick("#home")}
