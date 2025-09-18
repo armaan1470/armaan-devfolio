@@ -11,17 +11,6 @@ export function HeroSection() {
     setIsVisible(true);
   }, []);
 
-  const handleConnectClick = () => {
-    console.log("first");
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
   return (
     <section
       id="home"
@@ -39,13 +28,16 @@ export function HeroSection() {
             isVisible ? "animate-slide-up" : ""
           }`}
         >
-          <div className="inline-flex items-center px-2 py-1.5 bg-gradient-to-r from-blue-600/90 to-blue-700/90 backdrop-blur-sm rounded-full text-sm font-medium text-white shadow-lg border border-blue-500/20">
+          <a
+            href="#contact"
+            className="inline-flex items-center px-2 py-1.5 bg-gradient-to-r from-blue-600/90 to-blue-700/90 backdrop-blur-sm rounded-full text-sm font-medium text-white shadow-lg border border-blue-500/20"
+          >
             <span className="text-xs font-bold mr-2 bg-white text-blue-600 px-2 py-0.5 rounded-full">
               New
             </span>
             Available for new projects
             <ArrowRight className="w-3 h-3 ml-2" />
-          </div>
+          </a>
         </div>
 
         <div
@@ -94,14 +86,15 @@ export function HeroSection() {
           style={{ animationDelay: "0.6s" }}
         >
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 z-999">
-            <Button
-              size="lg"
-              onClick={handleConnectClick}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-full px-6 py-3 font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-105 border border-blue-500/20"
-            >
-              Let's Connect
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            <a href="#contact">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white rounded-full px-6 py-3 font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 hover:scale-105 border border-blue-500/20"
+              >
+                Let's Connect
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </a>
 
             <div className="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-600 rounded-full">
               <Mail className="w-4 h-4 text-gray-300" />
