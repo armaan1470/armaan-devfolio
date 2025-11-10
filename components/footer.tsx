@@ -68,7 +68,7 @@ export function Footer() {
               </h4>
               <div className="space-y-3">
                 <a
-                  href="https://linkedin.com/in/armaan-shaikh-24357a240"
+                  href="https://www.linkedin.com/in/armaan1470/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex justify-center lg:justify-start items-center gap-2 text-sm hover:text-white transition-colors"

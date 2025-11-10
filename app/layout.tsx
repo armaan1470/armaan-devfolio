@@ -57,7 +57,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div
-            className="pointer-events-none fixed top-0 left-0 z-40 w-full h-[150px] 
+            className="pointer-events-none fixed top-0 left-0 z-40 w-full h-[80px] md:h-[150px] 
                  bg-gradient-to-t from-transparent to-[#f5f4f330] 
                  dark:to-[#0a0a0aa4] 
                  select-none backdrop-blur-[6px]"

@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowUpRight, Star } from "lucide-react";
+import { Reveal } from "@/components/animations/reveal";
 
-// Tech Icons (can be imported as SVG components or from a library like react-icons)
+// Tech Icons
 import {
   SiNextdotjs,
   SiTailwindcss,
@@ -14,7 +14,6 @@ import {
   SiGreensock,
 } from "react-icons/si";
 
-// Define an interface for the project data structure for type safety
 interface Project {
   id: string;
   title: string;
@@ -29,30 +28,11 @@ interface Project {
 }
 
 export function WorkSection(): JSX.Element {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("work");
-    if (element) observer.observe(element);
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Map of technology names to their icons
   const techIcons: { [key: string]: JSX.Element | null } = {
     "Next.js": <SiNextdotjs className="w-4 h-4" />,
     "Tailwind CSS": <SiTailwindcss className="w-4 h-4" />,
     "React.js": <SiReact className="w-4 h-4" />,
-    ShadCN: null, // No specific icon for ShadCN, can be a custom one if available
+    ShadCN: null,
     GSAP: <SiGreensock className="w-4 h-4" />,
     "Framer Motion": <SiFramer className="w-4 h-4" />,
     CSS: null,
@@ -130,7 +110,7 @@ export function WorkSection(): JSX.Element {
       id="work"
       className="py-24 md:py-32 relative overflow-hidden bg-slate-950/70"
     >
-      {/* Subtle Background Gradients/Effects */}
+      {/* Background Effects */}
       <div className="absolute inset-0 bg-white/[0.01] pointer-events-none [mask-image:radial-gradient(ellipse_at_center,black_10%,transparent_80%)]"></div>
       <div className="absolute -top-1/3 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl opacity-70"></div>
       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl opacity-70"></div>
@@ -138,44 +118,36 @@ export function WorkSection(): JSX.Element {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <div
-            className={`text-center mb-16 md:mb-24 transition-all duration-1000 ${
-              isVisible ? "animate-slide-up" : ""
-            }`}
-          >
-            <div className="inline-flex items-center px-4 py-1 bg-gray-800/50 border border-gray-700 rounded-full text-sm font-medium text-gray-400 mb-6">
-              <Star className="w-4 h-4 mr-2 text-indigo-400" />
-              Selected Works
+          <Reveal delay={0.1}>
+            <div className="text-center mb-16 md:mb-24">
+              <div className="inline-flex items-center px-4 py-1 bg-gray-800/50 border border-gray-700 rounded-full text-sm font-medium text-gray-400 mb-6">
+                <Star className="w-4 h-4 mr-2 text-indigo-400" />
+                Selected Works
+              </div>
+
+              <h2 className="font-bold text-5xl md:text-7xl lg:text-8xl mb-4 leading-tight">
+                <span className="text-white">Crafted</span>
+                <br />
+                <span
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 font-light italic"
+                  style={{ fontFamily: "Georgia, serif" }}
+                >
+                  Experiences
+                </span>
+              </h2>
+
+              <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                A collection of digital experiences that blend innovative design
+                with cutting-edge technology to create meaningful user
+                interactions.
+              </p>
             </div>
+          </Reveal>
 
-            <h2 className="font-bold text-5xl md:text-7xl lg:text-8xl mb-4 leading-tight">
-              <span className="text-white">Crafted</span>
-              <br />
-              <span
-                className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500 font-light italic"
-                style={{ fontFamily: "Georgia, serif" }}
-              >
-                Experiences
-              </span>
-            </h2>
-
-            <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              A collection of digital experiences that blend innovative design
-              with cutting-edge technology to create meaningful user
-              interactions.
-            </p>
-          </div>
-
-          {/* Projects Showcase */}
+          {/* Projects */}
           <div className="space-y-24 md:space-y-32">
             {projects.map((project: Project, index: number) => (
-              <div
-                key={project.id}
-                className={`transition-all duration-1000 ${
-                  isVisible ? "animate-slide-up" : ""
-                }`}
-                style={{ animationDelay: `${0.2 + index * 0.15}s` }}
-              >
+              <Reveal key={project.id} delay={0.2 + index * 0.15}>
                 <div
                   className={`grid lg:grid-cols-12 gap-12 items-center ${
                     index % 2 === 1 ? "lg:flex-row-reverse" : ""
@@ -183,7 +155,7 @@ export function WorkSection(): JSX.Element {
                 >
                   {/* Project Image */}
                   <div
-                    className={`lg:col-span-7 transition-all duration-700 ${
+                    className={`lg:col-span-7 ${
                       index % 2 === 1 ? "lg:col-start-6 lg:row-start-1" : ""
                     }`}
                   >
@@ -196,7 +168,6 @@ export function WorkSection(): JSX.Element {
                         layout="responsive"
                         className="transition-transform duration-700 group-hover:scale-105"
                       />
-                      {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                         <Button
                           size="lg"
@@ -223,7 +194,6 @@ export function WorkSection(): JSX.Element {
                     }`}
                   >
                     <div className="space-y-6">
-                      {/* Project Number & Category */}
                       <div className="flex items-center gap-4 text-sm">
                         <span className="text-6xl font-bold text-gray-700 leading-none">
                           {project.id}
@@ -236,17 +206,14 @@ export function WorkSection(): JSX.Element {
                         </div>
                       </div>
 
-                      {/* Title */}
                       <h3 className="text-4xl lg:text-5xl font-bold text-white mb-4">
                         {project.title}
                       </h3>
 
-                      {/* Description */}
                       <p className="text-gray-300 text-lg leading-relaxed mb-6">
                         {project.longDescription}
                       </p>
 
-                      {/* Technologies */}
                       <div className="flex flex-wrap gap-2 mb-8">
                         {project.technologies.map((tech: string) => (
                           <span
@@ -261,7 +228,6 @@ export function WorkSection(): JSX.Element {
                         ))}
                       </div>
 
-                      {/* Action Buttons */}
                       <div className="flex gap-4">
                         <Button
                           className="group bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white border-0 rounded-full px-6 py-3 font-medium shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:scale-105"
@@ -295,32 +261,29 @@ export function WorkSection(): JSX.Element {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
 
           {/* Bottom CTA */}
-          <div
-            className={`text-center mt-24 md:mt-32 transition-all duration-1000 ${
-              isVisible ? "animate-slide-up" : ""
-            }`}
-            style={{ animationDelay: "1s" }}
-          >
-            <div className="inline-flex items-center gap-4 px-4 py-2 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-full">
-              <span className="text-white font-medium">
-                Interested in working together?
-              </span>
-              <Button
-                className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 text-sm"
-                asChild
-              >
-                <a href="#contact">
-                  Get in touch
-                  <ArrowUpRight className="w-4 h-4 ml-2" />
-                </a>
-              </Button>
+          <Reveal delay={1}>
+            <div className="text-center mt-24 md:mt-32">
+              <div className="inline-flex items-center gap-4 px-4 py-2 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-full">
+                <span className="text-white font-medium">
+                  Interested in working together?
+                </span>
+                <Button
+                  className="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full px-6 py-2 text-sm"
+                  asChild
+                >
+                  <a href="#contact">
+                    Get in touch
+                    <ArrowUpRight className="w-4 h-4 ml-2" />
+                  </a>
+                </Button>
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
