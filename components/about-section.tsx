@@ -1,10 +1,13 @@
 "use client";
 
 import { Reveal } from "@/components/animations/reveal";
+import { ChevronRight } from "lucide-react";
 import {
   SiDocker,
   SiExpress,
   SiGit,
+  SiGithub,
+  SiLinkedin,
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
@@ -13,6 +16,7 @@ import {
   SiReact,
   SiTailwindcss,
   SiTypescript,
+  SiX,
 } from "react-icons/si";
 
 export function AboutSection() {
@@ -89,8 +93,22 @@ export function AboutSection() {
 
           <Reveal delay={0.25}>
             <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+              {/* 3D Logo */}
+              <div className="md:order-2 flex justify-center">
+                <div className="relative">
+                  <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-xl border border-white/10 flex items-center justify-center overflow-hidden">
+                    <img
+                      src="/armaan-shaikh-1.png"
+                      alt="Profile picture of Armaan Shaikh"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-xl"></div>
+                </div>
+              </div>
+
               {/* Story Section */}
-              <div className="space-y-6 text-gray-300 leading-relaxed">
+              <div className="md:order-1 space-y-6 text-gray-300 leading-relaxed">
                 <p>
                   I'm Armaan Shaikh, a proactive full-stack developer passionate
                   about creating dynamic web experiences. From frontend to
@@ -115,7 +133,7 @@ export function AboutSection() {
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors"
                   >
-                    LinkedIn
+                    <SiLinkedin className="size-5" />
                   </a>
                   <a
                     href="https://github.com/armaan1470"
@@ -123,7 +141,7 @@ export function AboutSection() {
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors"
                   >
-                    GitHub
+                    <SiGithub className="size-5" />
                   </a>
                   <a
                     href="https://twitter.com/armaan1470"
@@ -131,31 +149,15 @@ export function AboutSection() {
                     rel="noopener noreferrer"
                     className="text-gray-400 hover:text-white transition-colors"
                   >
-                    Twitter
+                    <SiX className="size-5" />
                   </a>
                 </div>
-                <div className="pt-8">
-                  <a
-                    href="#work"
-                    className="inline-flex items-center text-white hover:text-gray-300 transition-colors font-medium"
-                  >
-                    Work Experience
-                  </a>
-                </div>
-              </div>
-
-              {/* 3D Logo */}
-              <div className="flex justify-center">
-                <div className="relative">
-                  <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-xl border border-white/10 flex items-center justify-center overflow-hidden">
-                    <img
-                      src="/armaan-shaikh-1.png"
-                      alt="Profile picture of Armaan Shaikh"
-                      className="w-full h-full object-cover"
-                    />
+                <a href="#work" className="pt-4 flex items-center gap-1">
+                  <div className="inline-flex items-center text-white hover:text-gray-300 transition-colors font-medium">
+                    <span>Work Experience</span>
+                    <ChevronRight className="size-5" />
                   </div>
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-xl"></div>
-                </div>
+                </a>
               </div>
             </div>
           </Reveal>
